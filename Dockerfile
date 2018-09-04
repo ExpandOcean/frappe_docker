@@ -2,7 +2,7 @@
 #bench Dockerfile
 
 FROM ubuntu:16.04
-MAINTAINER frappé
+MAINTAINER freeyourmind
 
 USER root
 RUN apt-get update
@@ -16,8 +16,12 @@ RUN pip install --upgrade setuptools pip
 RUN useradd -ms /bin/bash frappe
 RUN apt-get install -y curl
 RUN apt-get install -y rlwrap
-RUN apt-get install redis-tools
+RUN apt-get install -y redis-tools
 RUN apt-get install -y nano
+RUN apt-get install -y vim 
+RUN apt-get install sudo 
+RUN usermod -aG sudo frappe
+RUN printf '# User rules for frappe\nfrappe ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/frappe
 
 # Generate locale C.UTF-8 for mariadb and general locale data
 ENV LANG C.UTF-8
