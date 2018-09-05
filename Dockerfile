@@ -19,7 +19,11 @@ RUN apt-get install -y rlwrap
 RUN apt-get install -y redis-tools
 RUN apt-get install -y nano
 RUN apt-get install -y vim 
-RUN apt-get install sudo 
+RUN apt-get install -y sudo 
+RUN apt-get install -y supervisor
+RUN apt-get install -y nginx
+RUN apt-get install -y redis-server
+RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 RUN usermod -aG sudo frappe
 RUN printf '# User rules for frappe\nfrappe ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/frappe
 

@@ -45,11 +45,14 @@ services:
   frappe:
     volumes:
       - ./frappe-bench:/home/frappe/frappe-bench
+      - ./conf/nginx/frappe-bench.conf:/etc/nginx/conf.d/frappe-bench.conf
+      - ./conf/supervisor/frappe-bench.conf:/etc/supervisor/conf.d/frappe-bench.conf:ro
     build: .
     ports:
+      - "80:80" #nginx
       - "8000:8000" #webserver_port
       - "9000:9000" #socketio_port
-      - "6787:6787" #file_watcher_port
+      # - "6787:6787" #file_watcher_port
     stdin_open: true
     tty: true
     links:
