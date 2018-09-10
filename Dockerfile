@@ -23,6 +23,7 @@ RUN apt-get install -y sudo
 RUN apt-get install -y supervisor
 RUN apt-get install -y nginx
 RUN apt-get install -y redis-server
+RUN apt-get install -y fontconfig
 RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 RUN usermod -aG sudo frappe
 RUN printf '# User rules for frappe\nfrappe ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/frappe
@@ -36,9 +37,8 @@ RUN curl https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.7.0-1no
  && dpkg -i node.deb \
  && rm node.deb
 
-RUN curl https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb > wkhtmltox_0.12.5-1.xenial_amd64.deb \
- && dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb \
- && rm wkhtmltox_0.12.5-1.xenial_amd64.deb
+ADD wkhtmltox_0.12.5-1.xenial_amd64.deb ./ 
+RUN dpkg -i ./wkhtmltox_0.12.5-1.xenial_amd64.deb 
 
 USER frappe
 WORKDIR /home/frappe

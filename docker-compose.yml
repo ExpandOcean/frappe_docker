@@ -7,7 +7,7 @@ services:
       - MYSQL_USER=root
     volumes:
       - ./conf/mariadb-conf.d:/etc/mysql/conf.d
-      - /datadisk/volumes/mysql:/var/lib/mysql
+      - /datadisk/volumes/erp/mysql:/var/lib/mysql
     ports:
       - "3307:3306" #mariadb-port
     container_name: mariadb
@@ -47,8 +47,6 @@ services:
       - ./frappe-bench:/home/frappe/frappe-bench
       - ./conf/nginx/frappe-bench.conf:/etc/nginx/conf.d/frappe-bench.conf
       - ./conf/supervisor/frappe-bench.conf:/etc/supervisor/conf.d/frappe-bench.conf:ro
-      - ./conf/apt/source.list:/etc/apt/source.list:ro
-      - ./conf/pip/pip.conf:/home/frappe/.pip/pip.conf
     build: .
     ports:
       - "80:80" #nginx
