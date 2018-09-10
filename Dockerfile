@@ -36,7 +36,7 @@ RUN curl https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.7.0-1no
  && dpkg -i node.deb \
  && rm node.deb
 
-RUN curlhttps://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb > wkhtmltox_0.12.5-1.xenial_amd64.deb \
+RUN curl https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb > wkhtmltox_0.12.5-1.xenial_amd64.deb \
  && dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb \
  && rm wkhtmltox_0.12.5-1.xenial_amd64.deb
 
